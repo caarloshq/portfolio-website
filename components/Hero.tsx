@@ -67,6 +67,7 @@ export default function Hero() {
           </motion.p>
 
           <SplitText
+            key={lang}
             as="h1"
             text={
               lang === "en"

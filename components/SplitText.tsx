@@ -61,7 +61,7 @@ export default function SplitText({
         // Fragment: word wrapper + trailing space as plain text.
         // Plain spaces between inline-block elements collapse at line breaks.
         <span key={wi}>
-          <span className="inline-block overflow-hidden align-top leading-[inherit]">
+          <span className="inline-block overflow-hidden align-top leading-[inherit] pb-[0.2em] -mb-[0.2em]">
             {word.split("").map((char, ci) => (
               <motion.span
                 key={ci}

@@ -118,23 +118,6 @@ export default async function CaseStudyPage({
           )}
         </div>
 
-        {/* ─── Metrics ─── */}
-        {project.metrics.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 py-10 border-t border-[var(--border-color)] border-b border-[var(--border-color)]">
-            {project.metrics.map((m, i) => (
-              <div
-                key={m.label}
-                className={`py-8 flex flex-col gap-2 ${i < project.metrics.length - 1 ? "border-r border-[var(--border-color)] pr-[var(--spacing-metrics)]" : ""} ${i > 0 ? "pl-[var(--spacing-metrics)]" : ""}`}
-              >
-                <span className="font-semibold leading-none text-metric tracking-tight-3 text-[color:var(--accent)]">
-                  {m.value}
-                </span>
-                <span className="text-sm text-[color:var(--text-muted)]">{m.label}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
         {/* ─── Quote ─── */}
         {project.quote && (
           <div className="py-14 border-b border-[var(--border-color)]">
@@ -147,14 +130,14 @@ export default async function CaseStudyPage({
         )}
 
         {/* ─── Sections ─── */}
-        {sections.filter(s => !s.links?.length).map((section) => (
+        {sections.filter(s => !s.links?.length).map((section, sectionIndex) => (
           <div key={section.title} className={`pt-14 border-t border-[var(--border-color)] ${section.links && section.links.length > 0 ? "pb-2" : "pb-6"}`}>
             <div
               className={`grid grid-cols-1 md:grid-cols-[1fr_1.8fr] gap-4 md:gap-20 ${section.links && section.links.length > 0 ? "pb-5 mb-5" : "pb-10 mb-10 border-b border-[var(--border-color)]"}`}
             >
-              <h2 className="font-semibold text-lg tracking-tight-2 text-[color:var(--text-primary)]">
+              <h1 className="font-semibold text-h2 leading-heading tracking-tight-2 text-[color:var(--text-primary)]">
                 {section.title}
-              </h2>
+              </h1>
               {section.links && section.links.length > 0 ? (
                 <div className="flex flex-col gap-2">
                   {section.links.map((link) => (
@@ -173,9 +156,28 @@ export default async function CaseStudyPage({
                   ))}
                 </div>
               ) : (
-                <p className="text-sm md:text-base leading-body text-[color:var(--text-secondary)]">
-                  {section.body}
-                </p>
+                <div className="flex flex-col gap-4">
+                  {section.body.split('\n\n').map((paragraph, i) => (
+                    <p key={i} className="text-sm md:text-base leading-body text-[color:var(--text-secondary)]">
+                      {paragraph}
+                    </p>
+                  ))}
+                  {sectionIndex === 0 && project.metrics.length > 0 && (
+                    <>
+                      <div className="border-t border-[var(--border-color)] pt-4">
+                        <p className="text-sm md:text-base font-semibold text-[color:var(--text-primary)]">O problema em números</p>
+                      </div>
+                      {project.metrics.map((m) => (
+                        <div key={m.label} className="flex flex-col gap-0.5">
+                          <p className="text-sm md:text-base font-semibold text-[color:var(--text-primary)]">{m.value} {m.label}:</p>
+                          {m.description && (
+                            <p className="text-sm md:text-base leading-body text-[color:var(--text-secondary)]">{m.description}</p>
+                          )}
+                        </div>
+                      ))}
+                    </>
+                  )}
+                </div>
               )}
             </div>
 
@@ -248,9 +250,9 @@ export default async function CaseStudyPage({
         {sections.filter(s => s.links?.length).map((section) => (
           <div key={section.title} className="pt-14 pb-2 border-t border-[var(--border-color)]">
             <div className="grid grid-cols-1 md:grid-cols-[1fr_1.8fr] gap-4 md:gap-20 pb-5 mb-5">
-              <h2 className="font-semibold text-lg tracking-tight-2 text-[color:var(--text-primary)]">
+              <h1 className="font-semibold text-h2 leading-heading tracking-tight-2 text-[color:var(--text-primary)]">
                 {section.title}
-              </h2>
+              </h1>
               <div className="flex flex-col gap-2">
                 {section.links!.map((link) => (
                   <a
