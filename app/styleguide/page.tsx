@@ -374,6 +374,7 @@ export default function StyleguidePage() {
             <RadiusSwatch label="md"   px={8}   />
             <RadiusSwatch label="lg"   px={12}  />
             <RadiusSwatch label="xl"   px={16}  />
+            <RadiusSwatch label="card-mobile" px={4} />
             <RadiusSwatch label="card" px={8}   />
             <RadiusSwatch label="full" px={500} />
           </div>
@@ -505,7 +506,7 @@ export default function StyleguidePage() {
             <div className="grid grid-cols-2 gap-6">
               {[projects[0], projects[1] ?? projects[0]].map((p) => (
                 <div key={p.slug} className="block group">
-                  <div className="relative w-full overflow-hidden aspect-card rounded-card bg-[color:var(--dark-surface)]">
+                  <div className="relative w-full overflow-hidden aspect-card rounded-card-mobile md:rounded-card bg-[color:var(--dark-surface)]">
                     {p.coverImage && <img src={p.coverImage} alt="" className="absolute inset-0 w-full h-full object-cover" />}
                     <div className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
                       <div className="absolute inset-0 [background-image:var(--gradient-card-overlay)]" />

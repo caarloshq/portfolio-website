@@ -101,7 +101,7 @@ export default function Lightbox({ src, alt, onClose }: { src: string; alt?: str
         src={src}
         alt={alt ?? ""}
         onClick={(e) => e.stopPropagation()}
-        className="rounded-card object-contain max-w-[var(--max-w-lightbox)] max-h-[var(--max-h-lightbox)] w-auto h-auto lightbox-img"
+        className="rounded-card-mobile md:rounded-card object-contain max-w-[var(--max-w-lightbox)] max-h-[var(--max-h-lightbox)] w-auto h-auto lightbox-img"
       />
     </div>
   )
