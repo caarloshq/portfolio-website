@@ -17,7 +17,7 @@ export type Project = {
   subtitle: string
   description: string
   tags: string[]
-  metrics: { value: string; label: string }[]
+  metrics: { value: string; label: string; description?: string }[]
   coverLabel: string
   coverImage?: string
   year: string
