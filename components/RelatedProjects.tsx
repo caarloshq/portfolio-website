@@ -18,7 +18,7 @@ export default function RelatedProjects({ project }: { project: Project }) {
           </h2>
 
           <Link href={`/work/${project.slug}`} className="block group w-full max-w-sm">
-            <div className="relative w-full overflow-hidden aspect-card rounded-card bg-[var(--dark-surface)]">
+            <div className="relative w-full overflow-hidden aspect-card rounded-card-mobile md:rounded-card bg-[var(--dark-surface)]">
               {project.coverImage && (
                 <img
                   src={project.coverImage}
